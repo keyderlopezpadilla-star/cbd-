@@ -106,7 +106,7 @@ export const products: Product[] = [
     terpenes: ["Limoneno", "Terpinoleno", "Mirceno"],
     origin: "Cultivo propio en Algemesí (Valencia)",
     method: "interior",
-    images: ["/products/amnesia-haze-interior.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.8,
       count: 42,
@@ -150,7 +150,7 @@ export const products: Product[] = [
     terpenes: ["Mirceno", "Pineno", "Cariofileno"],
     origin: "Cultivo exterior en Sueca (Valencia)",
     method: "exterior",
-    images: ["/products/og-kush-exterior.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.5,
       count: 28,
@@ -188,7 +188,7 @@ export const products: Product[] = [
     terpenes: ["Cariofileno", "Limoneno", "Humuleno"],
     origin: "Invernadero en Tavernes (Valencia)",
     method: "greenhouse",
-    images: ["/products/gorilla-glue-invernadero.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.7,
       count: 19,
@@ -228,7 +228,7 @@ export const products: Product[] = [
     terpenes: ["Mirceno", "Pineno"],
     origin: "Importación seleccionada, control de laboratorio en España",
     method: null,
-    images: ["/products/hachis-marroqui.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.6,
       count: 33,
@@ -265,7 +265,7 @@ export const products: Product[] = [
     terpenes: ["Limoneno", "Terpinoleno"],
     origin: "Elaboración propia en Carcaixent (Valencia)",
     method: null,
-    images: ["/products/dry-sift-cbd.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.9,
       count: 12,
@@ -304,7 +304,7 @@ export const products: Product[] = [
     terpenes: ["Mirceno", "Linalool"],
     origin: "Formulado en España a partir de cáñamo ecológico europeo",
     method: null,
-    images: ["/products/aceite-full-10.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.7,
       count: 58,
@@ -341,7 +341,7 @@ export const products: Product[] = [
     terpenes: ["Limoneno", "Pineno"],
     origin: "Formulado en España con AOVE valenciano",
     method: null,
-    images: ["/products/aceite-broad-20.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.8,
       count: 37,
@@ -380,7 +380,7 @@ export const products: Product[] = [
     terpenes: [],
     origin: "Diseño europeo, materiales de grado alimentario",
     method: null,
-    images: ["/products/vaporizador-portatil.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.6,
       count: 24,
@@ -411,7 +411,7 @@ export const products: Product[] = [
     terpenes: [],
     origin: "Diseño europeo, materiales de grado alimentario",
     method: null,
-    images: ["/products/vaporizador-sobremesa.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.9,
       count: 15,
@@ -444,7 +444,7 @@ export const products: Product[] = [
     terpenes: [],
     origin: "Aluminio de grado aeronáutico",
     method: null,
-    images: ["/products/grinder-aluminio.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.7,
       count: 61,
@@ -478,7 +478,7 @@ export const products: Product[] = [
     terpenes: [],
     origin: "Cristal con tratamiento UV",
     method: null,
-    images: ["/products/bote-hermetico.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.5,
       count: 40,
@@ -515,7 +515,7 @@ export const products: Product[] = [
     terpenes: ["Mirceno", "Limoneno"],
     origin: "Banco de semillas europeo",
     method: null,
-    images: ["/products/semillas-cbd.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.8,
       count: 22,
@@ -552,7 +552,7 @@ export const products: Product[] = [
     terpenes: ["Pineno", "Cariofileno"],
     origin: "Banco de semillas europeo",
     method: null,
-    images: ["/products/semillas-cbg.jpg"],
+    images: ["/products/placeholder.jpg"],
     reviews: {
       rating: 4.6,
       count: 9,

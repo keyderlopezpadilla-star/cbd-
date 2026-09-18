@@ -48,6 +48,26 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /*
+   * Global brand watermark, inspired by the product packaging: the wordmark
+   * "THE BEST DREAMS" repeated diagonally as a very faint dark-gray texture on
+   * the black base. Fixed to the viewport so it reads as a background texture
+   * behind every page while scrolling. It sits behind all content (z-index -1)
+   * and never intercepts pointer events, so it does not affect the header,
+   * modals (18+ age gate), 3D canvases or content legibility.
+   */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: var(--surface-base);
+    /* Tiled SVG: rotated, repeated "THE BEST DREAMS" wordmark, faint on black. */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='300' viewBox='0 0 520 300'%3E%3Cg transform='rotate(-20 260 150)' fill='%23f7f5f0' fill-opacity='0.04' font-family='Georgia, \"Playfair Display\", serif' font-weight='700' font-size='34' letter-spacing='2'%3E%3Ctext x='-40' y='60'%3ETHE BEST DREAMS%3C/text%3E%3Ctext x='120' y='150'%3ETHE BEST DREAMS%3C/text%3E%3Ctext x='-40' y='240'%3ETHE BEST DREAMS%3C/text%3E%3C/g%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+
   h1,
   h2,
   h3,
