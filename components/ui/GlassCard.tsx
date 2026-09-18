@@ -1,4 +1,4 @@
-export interface GlassCardProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface GlassCardProps extends React.HTMLAttributes<HTMLElement> {
   /** Add the warm gold glow around the card. */
   glow?: boolean;
   as?: "div" | "article" | "li";
@@ -15,7 +15,7 @@ export function GlassCard({
   children,
   ...props
 }: GlassCardProps) {
-  const Tag = as;
+  const Tag = as as React.ElementType;
   const classes = ["glass rounded-2xl", glow ? "gold-glow" : "", className]
     .filter(Boolean)
     .join(" ");
