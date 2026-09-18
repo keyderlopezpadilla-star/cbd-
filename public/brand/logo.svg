@@ -1,0 +1,45 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 240 120"
+  width="240"
+  height="120"
+  role="img"
+  aria-label="The Best Dreams placeholder mark"
+>
+  <title>The Best Dreams — placeholder mark</title>
+  <!--
+    ORIGINAL lightweight placeholder. This is NOT the real crowned golden eagle
+    artwork. It is an abstract gold geometric emblem (crown-suggesting chevrons
+    above spread wing-suggesting arcs) used only until public/brand/logo.png
+    is dropped in. See README.md in this folder.
+  -->
+  <defs>
+    <linearGradient id="tbdGold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E8C572" />
+      <stop offset="1" stop-color="#C9A24B" />
+    </linearGradient>
+  </defs>
+
+  <!-- crown-suggesting chevrons -->
+  <g fill="none" stroke="url(#tbdGold)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M96 34 L108 22 L120 34 L132 22 L144 34" />
+    <!-- spread wing-suggesting arcs -->
+    <path d="M60 62 Q120 40 180 62" />
+    <path d="M74 74 Q120 56 166 74" />
+  </g>
+
+  <!-- central diamond accent -->
+  <path d="M120 44 L128 54 L120 64 L112 54 Z" fill="url(#tbdGold)" />
+
+  <text
+    x="120"
+    y="100"
+    text-anchor="middle"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="16"
+    letter-spacing="3"
+    fill="#C9A24B"
+  >
+    THE BEST DREAMS
+  </text>
+</svg>

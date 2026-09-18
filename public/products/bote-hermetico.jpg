@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" viewBox="0 0 1000 1000" role="img" aria-label="bote hermetico">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#141412"/>
+      <stop offset="55%" stop-color="#3E4B34"/>
+      <stop offset="100%" stop-color="#0B0B0A"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="38%" r="60%">
+      <stop offset="0%" stop-color="#C9A24B" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#C9A24B" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1000" height="1000" fill="url(#g)"/>
+  <rect width="1000" height="1000" fill="url(#glow)"/>
+  <circle cx="500" cy="420" r="150" fill="none" stroke="#C9A24B" stroke-width="3" opacity="0.55"/>
+  <text x="500" y="435" font-family="Georgia, serif" font-size="46" fill="#E8C572" text-anchor="middle" opacity="0.9">TBD</text>
+  <text x="500" y="720" font-family="Georgia, serif" font-size="40" fill="#F7F5F0" text-anchor="middle" opacity="0.85" style="text-transform:capitalize">bote hermetico</text>
+  <text x="500" y="770" font-family="Inter, sans-serif" font-size="22" fill="#F7F5F0" text-anchor="middle" opacity="0.5">The Best Dreams</text>
+</svg>
