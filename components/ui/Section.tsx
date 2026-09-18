@@ -42,7 +42,7 @@ export function Section({
   id,
 }: SectionProps) {
   const reducedMotion = useReducedMotion();
-  const [ref, inView] = useInViewOnce<HTMLElement>({ threshold: 0.2 });
+  const [ref, inView] = useInViewOnce<HTMLDivElement>({ threshold: 0.2 });
 
   const animate = !reducedMotion && !noReveal;
   const MotionTag = motionTags[as];
