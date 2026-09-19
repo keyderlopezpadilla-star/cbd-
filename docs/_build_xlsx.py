@@ -150,8 +150,9 @@ EXAMPLE = {
 INSTR = [
     ("Plantilla de productos — The Best Dreams", "titulo"),
     ("", "n"),
-    ("Rellena la hoja «Productos»: UNA FILA POR PRODUCTO, a partir de la fila 3.", "n"),
-    ("Fila 1 = grupos de sección (color). Fila 2 = títulos de campo (no la borres). Fila 3 = EJEMPLO: bórrala y escribe los tuyos.", "n"),
+    ("Rellena la hoja «Productos»: los TÍTULOS están arriba (fila 1) y escribes UN PRODUCTO POR FILA.", "n"),
+    ("La columna «Nº» ya viene numerada (1, 2, 3...). La fila nº1 es un EJEMPLO: bórrala y escribe los tuyos.", "n"),
+    ("Hay 60 filas preparadas; si necesitas más, copia una fila hacia abajo y sigue numerando.", "n"),
     ("Los campos con lista desplegable: Categoria, Espectro, Unidad_Medida, IVA_%, Moneda, Disponibilidad, Estado. Haz clic y elige.", "n"),
     ("", "n"),
     ("CAMPOS OBLIGATORIOS", "sub"),
@@ -279,52 +280,50 @@ def build_instrucciones():
 <sheetData>{"".join(rows)}</sheetData>
 </worksheet>'''
 
+DATA_ROWS = 60  # filas numeradas listas para rellenar
+
 def build_productos():
+    # Columna A = "Nº"; luego los 52 campos. Títulos ARRIBA (fila 1), como una tabla.
+    headers = ["Nº"] + FIELD_NAMES
+    widths = [6] + [w for (_n, w, _r) in FLAT]
     cols = "".join(
         f'<col min="{i+1}" max="{i+1}" width="{w}" customWidth="1"/>'
-        for i, (_n, w, _r) in enumerate(FLAT))
-    # Row 1: section groups (merged across their fields)
-    merges = []
-    r1 = []
-    c = 0
-    for si, (title, fields) in enumerate(SECTIONS):
-        start = c
-        end = c + len(fields) - 1
-        style = 7 + (si % len(SECTION_COLORS))
-        r1.append(sc(col_letter(start) + "1", title, style))
-        # fill the rest of the merged cells with empty styled cells
-        for k in range(start + 1, end + 1):
-            r1.append(f'<c r="{col_letter(k)}1" s="{style}"/>')
-        if end > start:
-            merges.append(f'{col_letter(start)}1:{col_letter(end)}1')
-        c = end + 1
-    row1 = f'<row r="1" ht="20" customHeight="1">{"".join(r1)}</row>'
-    # Row 2: field headers
-    r2 = "".join(sc(col_letter(i) + "2", name, 1) for i, name in enumerate(FIELD_NAMES))
-    row2 = f'<row r="2" ht="28" customHeight="1">{r2}</row>'
-    # Row 3: example
-    r3 = "".join(sc(col_letter(i) + "3", EXAMPLE.get(name, ""), 2) for i, name in enumerate(FIELD_NAMES))
-    row3 = f'<row r="3">{r3}</row>'
-    last_col = col_letter(len(FIELD_NAMES) - 1)
-    merge_xml = (f'<mergeCells count="{len(merges)}">'
-                 + "".join(f'<mergeCell ref="{m}"/>' for m in merges)
-                 + '</mergeCells>')
-    # Data validations for dropdown fields (rows 3..1000)
+        for i, w in enumerate(widths))
+    last_col = col_letter(len(headers) - 1)
+
+    # Fila 1: títulos de campo (cabecera de tabla)
+    hrow = "".join(sc(col_letter(i) + "1", h, 1) for i, h in enumerate(headers))
+    rows = [f'<row r="1" ht="30" customHeight="1">{hrow}</row>']
+
+    # Fila 2: ejemplo (numerada como 1)
+    ex_cells = [sc("A2", "1", 2)]
+    ex_cells += [sc(col_letter(i + 1) + "2", EXAMPLE.get(name, ""), 2)
+                 for i, name in enumerate(FIELD_NAMES)]
+    rows.append(f'<row r="2">{"".join(ex_cells)}</row>')
+
+    # Filas 3..: numeradas y vacías, listas para rellenar
+    for n in range(2, DATA_ROWS + 1):
+        r = n + 1  # fila de hoja (empezamos ejemplo en fila 2 = nº1)
+        cells = [sc("A" + str(r), str(n), 2)]
+        cells += [f'<c r="{col_letter(i + 1)}{r}" s="2"/>' for i in range(len(FIELD_NAMES))]
+        rows.append(f'<row r="{r}">{"".join(cells)}</row>')
+
+    # Desplegables (offset +1 por la columna Nº). Filas 2..(DATA_ROWS+1)
     dvs = []
     for name, opts in DROPDOWNS.items():
-        col = col_letter(FIELD_NAMES.index(name))
+        col = col_letter(FIELD_NAMES.index(name) + 1)
         lst = escape(",".join(opts))
         dvs.append(f'<dataValidation type="list" allowBlank="1" showInputMessage="1" showErrorMessage="1" '
-                   f'sqref="{col}3:{col}1000"><formula1>"{lst}"</formula1></dataValidation>')
+                   f'sqref="{col}2:{col}{DATA_ROWS + 1}"><formula1>"{lst}"</formula1></dataValidation>')
     dv = f'<dataValidations count="{len(dvs)}">' + "".join(dvs) + '</dataValidations>'
+
     return f'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
-<sheetViews><sheetView workbookViewId="0"><pane ySplit="2" topLeftCell="A3" activePane="bottomLeft" state="frozen"/><selection pane="bottomLeft" activeCell="A3" sqref="A3"/></sheetView></sheetViews>
+<sheetViews><sheetView workbookViewId="0"><pane xSplit="1" ySplit="1" topLeftCell="B2" activePane="bottomRight" state="frozen"/><selection pane="bottomRight" activeCell="B2" sqref="B2"/></sheetView></sheetViews>
 <sheetFormatPr defaultRowHeight="15"/>
 <cols>{cols}</cols>
-<sheetData>{row1}{row2}{row3}</sheetData>
-{merge_xml}
-<autoFilter ref="A2:{last_col}2"/>
+<sheetData>{"".join(rows)}</sheetData>
+<autoFilter ref="A1:{last_col}1"/>
 {dv}
 </worksheet>'''
 

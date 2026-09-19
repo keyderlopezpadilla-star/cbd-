@@ -11,12 +11,13 @@ pero **el Excel es el formato recomendado** para el cliente.
 
 ## Estructura de la hoja «Productos»
 
-- **Fila 1** — grupos de sección, cada uno con su color:
-  Identificación · Cannabinoides · Producto · Precios · Stock · Trazabilidad · Uso ·
-  Envío · Imágenes · Contenido web · Gestión.
-- **Fila 2** — títulos de cada campo (congelada; **no borrar**).
-- **Fila 3** — un producto de **ejemplo** ya relleno (bórralo y escribe los tuyos).
-- **A partir de la fila 3** — una fila por producto.
+Es una **tabla**: los **títulos están arriba** (fila 1) y escribes **un producto por fila**.
+
+- **Columna «Nº»** — ya viene numerada (1, 2, 3…).
+- **Fila 1** — títulos de todos los campos (cabecera de color, con filtros; **no borrar**).
+- **Fila del nº 1** — un producto de **ejemplo** ya relleno (bórralo y escribe los tuyos).
+- Hay **60 filas** preparadas; si necesitas más, copia una fila hacia abajo.
+- La cabecera y la columna «Nº» quedan **fijas** al hacer scroll.
 
 ## Campos por sección
 
