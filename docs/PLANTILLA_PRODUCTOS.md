@@ -1,17 +1,28 @@
 # Plantilla de productos (para rellenar en Excel / Google Sheets)
 
-Rellena el archivo **[`plantilla-productos.csv`](./plantilla-productos.csv)** —
-**una fila por producto**— y devuélvemelo (o pega su contenido en el chat).
+Tienes **dos formatos** de la misma plantilla; usa el que prefieras:
+
+1. **[`plantilla-productos.xlsx`](./plantilla-productos.xlsx)** — **Excel recomendado.**
+   Ya viene con dos hojas (_Instrucciones_ y _Productos_), cabeceras con color,
+   **listas desplegables** en «categoria» y «metodo» (para no equivocarte) y 2 filas
+   de ejemplo.
+2. **[`plantilla-productos.csv`](./plantilla-productos.csv)** — mismo contenido en CSV
+   plano, por si prefieres Google Sheets o un editor simple.
+
+Rellena **una fila por producto** y devuélveme el archivo (o pega su contenido en el chat).
 Con eso genero el catálogo completo de la tienda automáticamente.
 
 ## Cómo abrirlo
 
-- **Excel:** botón derecho sobre `plantilla-productos.csv` → Abrir con Excel. Si los
-  acentos se ven raros, en Excel usa _Datos → Desde texto/CSV_ y elige codificación
-  **UTF-8** y separador **coma**.
-- **Google Sheets:** _Archivo → Importar → Subir_ el CSV. Al terminar, descárgalo de
-  nuevo como CSV (_Archivo → Descargar → .csv_) antes de enviármelo.
+- **Excel:** doble clic en `plantilla-productos.xlsx`. Ve a la hoja **«Productos»** y
+  escribe debajo de la fila de títulos. En «categoria» y «metodo» haz clic en la celda y
+  **elige de la lista** desplegable.
+- **Google Sheets:** _Archivo → Importar → Subir_ el `.xlsx` (o el `.csv`). Al terminar,
+  descárgalo de nuevo (_Archivo → Descargar → .xlsx o .csv_) antes de enviármelo.
 - Deja la **primera fila de títulos tal cual** y escribe cada producto debajo.
+
+> El Excel se genera con el script `docs/_build_xlsx.py` (sin dependencias externas).
+> Solo hace falta ejecutarlo de nuevo si quieres regenerar la plantilla: `python3 docs/_build_xlsx.py`.
 
 ## Qué poner en cada columna
 
