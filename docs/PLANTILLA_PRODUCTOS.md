@@ -1,76 +1,67 @@
-# Plantilla de productos (para rellenar en Excel / Google Sheets)
+# Plantilla de productos (Excel para el cliente)
 
-Tienes **dos formatos** de la misma plantilla; usa el que prefieras:
+Plantilla completa y profesional para dar de alta el catálogo de **The Best Dreams**.
 
-1. **[`plantilla-productos.xlsx`](./plantilla-productos.xlsx)** — **Excel recomendado.**
-   Ya viene con dos hojas (_Instrucciones_ y _Productos_), cabeceras con color,
-   **listas desplegables** en «categoria» y «metodo» (para no equivocarte) y 2 filas
-   de ejemplo.
-2. **[`plantilla-productos.csv`](./plantilla-productos.csv)** — mismo contenido en CSV
-   plano, por si prefieres Google Sheets o un editor simple.
+📗 **[`plantilla-productos.xlsx`](./plantilla-productos.xlsx)** — Excel con **52 campos**
+organizados en **11 secciones**, listas desplegables, cabeceras de color, fila de
+títulos congelada y una fila de ejemplo.
 
-Rellena **una fila por producto** y devuélveme el archivo (o pega su contenido en el chat).
-Con eso genero el catálogo completo de la tienda automáticamente.
+También queda el CSV simple anterior (`plantilla-productos.csv`) por si se prefiere,
+pero **el Excel es el formato recomendado** para el cliente.
+
+## Estructura de la hoja «Productos»
+
+- **Fila 1** — grupos de sección, cada uno con su color:
+  Identificación · Cannabinoides · Producto · Precios · Stock · Trazabilidad · Uso ·
+  Envío · Imágenes · Contenido web · Gestión.
+- **Fila 2** — títulos de cada campo (congelada; **no borrar**).
+- **Fila 3** — un producto de **ejemplo** ya relleno (bórralo y escribe los tuyos).
+- **A partir de la fila 3** — una fila por producto.
+
+## Campos por sección
+
+- **Identificación:** ID, SKU, EAN, Nombre_Producto, Marca, Proveedor, Categoria, Subcategoria, Formato
+- **Cannabinoides:** Espectro, CBD_mg, CBD_%, THC_%, Otros_Cannabinoides
+- **Producto:** Contenido_Neto, Unidad_Medida, Ingredientes, Aceite_Portador, Sabor_Aroma
+- **Precios:** Precio_Venta, Precio_Oferta, Precio_Coste, IVA_%, Moneda
+- **Stock:** Stock, Stock_Minimo, Disponibilidad
+- **Trazabilidad:** Lote, Fecha_Caducidad, Origen_Cañamo, Metodo_Extraccion, Certificaciones, COA_URL
+- **Uso:** Dosis_Recomendada, Modo_Empleo, Advertencias
+- **Envío:** Peso_g, Alto_cm, Ancho_cm, Fondo_cm
+- **Imágenes:** Imagen_Principal, Imagen_2, Imagen_3
+- **Contenido web:** Descripcion_Corta, Descripcion_Larga, Palabras_Clave, Meta_Titulo, Meta_Descripcion, URL_Origen
+- **Gestión:** Estado, Aviso_Legal, Notas_Internas
+
+## Campos con lista desplegable
+
+`Categoria`, `Espectro`, `Unidad_Medida`, `IVA_%`, `Moneda`, `Disponibilidad`, `Estado`
+→ clic en la celda y elegir de la lista.
+
+## Campos obligatorios
+
+`ID`, `SKU`, `Nombre_Producto`, `Categoria`, `CBD_%`, `THC_%`, `Precio_Venta`,
+`Disponibilidad`, `Descripcion_Corta`, `Estado`.
+
+## Reglas rápidas
+
+- Precios y números **sin símbolos** (ej. `38.00`). Decimales con punto o coma.
+- `THC_%` debe ser **inferior a 0,2** (cáñamo legal en España).
+- Fechas en formato **AAAA-MM-DD** (ej. `2026-12-31`).
+- Imágenes: pon el **nombre del archivo** y súbelo a `public/products/`.
+- Certificados/COA: enlace en `COA_URL`, o sube el PDF a `public/lab-pdfs/`.
 
 ## Cómo abrirlo
 
-- **Excel:** doble clic en `plantilla-productos.xlsx`. Ve a la hoja **«Productos»** y
-  escribe debajo de la fila de títulos. En «categoria» y «metodo» haz clic en la celda y
-  **elige de la lista** desplegable.
-- **Google Sheets:** _Archivo → Importar → Subir_ el `.xlsx` (o el `.csv`). Al terminar,
-  descárgalo de nuevo (_Archivo → Descargar → .xlsx o .csv_) antes de enviármelo.
-- Deja la **primera fila de títulos tal cual** y escribe cada producto debajo.
+- **Excel:** doble clic en el `.xlsx` → hoja «Productos».
+- **Google Sheets:** _Archivo → Importar → Subir_ el `.xlsx`. Al terminar, descárgalo
+  de nuevo (_Archivo → Descargar → .xlsx_) antes de enviarlo.
 
-> El Excel se genera con el script `docs/_build_xlsx.py` (sin dependencias externas).
-> Solo hace falta ejecutarlo de nuevo si quieres regenerar la plantilla: `python3 docs/_build_xlsx.py`.
+## Cuando esté relleno
 
-## Qué poner en cada columna
+Envíame el archivo o pega su contenido y **genero el catálogo de la tienda**
+(`lib/commerce/mock-data.ts`) con esos productos, listo para desplegar.
 
-| Columna              | Qué escribir                                                                                                              | ¿Obligatorio? |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| `nombre`             | Nombre del producto.                                                                                                      | Sí            |
-| `categoria`          | Una de: **Flores CBD**, **Hachís y Extractos**, **Aceites CBD**, **Vaporizadores**, **Accesorios**, **Semillas CBD/CBG**. | Sí            |
-| `descripcion_corta`  | Una frase (aparece en la tarjeta).                                                                                         | Sí            |
-| `descripcion_larga`  | 2–4 frases (aparece en la ficha).                                                                                         | Recomendado   |
-| `cbd_percent`        | Número, % de CBD (ej. `12`). Si no aplica, `0`.                                                                           | Sí            |
-| `cbg_percent`        | Número, % de CBG. Si no aplica, `0`.                                                                                       | No            |
-| `terpenos`           | Lista separada por comas: `Mirceno, Limoneno`. Entre comillas si lleva comas.                                             | No            |
-| `origen`             | Ej. `Cultivo propio en Algemesí (Valencia)`.                                                                              | No            |
-| `metodo`             | Solo flores/extractos: `interior`, `exterior` o `invernadero`. En lo demás: `no aplica`.                                  | No            |
-| `variantes`          | Formatos y precios (ver formato abajo). **Al menos uno.**                                                                 | Sí            |
-| `etiquetas`          | Cualquiera de: `nuevo`, `oferta`, `mas-vendido`, `agotado`. Varias separadas por coma, o vacío.                           | No            |
-| `imagen`             | Nombre del archivo de foto propia (súbelo a `public/products/`). Vacío = se usa la imagen común.                          | No            |
-| `pdf_laboratorio`    | Nombre del PDF de análisis (súbelo a `public/lab-pdfs/`). Vacío = sin certificado.                                        | No            |
-| `disclaimer_especial`| Texto legal propio de ese producto. Vacío = uso el disclaimer legal por categoría.                                        | No            |
+---
 
-## Formato de la columna `variantes` (¡la más importante!)
-
-Cada variante es un **tamaño**, su **precio en €** y si está **disponible**, así:
-
-```
-tamaño=precio=si|no
-```
-
-Y se separan varias con la barra `|`. Ejemplos:
-
-- Flores/hachís (gramos): `1g=8.90=si | 3g=24.00=si | 5g=38.00=si | 10g=70.00=no`
-- Aceites (mililitros): `10ml=29.90=si | 30ml=69.90=si`
-- Accesorios/semillas (unidades): `1 ud=12.00=si` · `3 semillas=25.00=si`
-
-Reglas:
-- Usa **punto o coma** para los decimales (`8.90` o `8,90`), yo lo normalizo.
-- `si` = disponible, `no` = agotado.
-- El precio "desde" que se muestra en la web se calcula solo (el más barato disponible).
-
-## Ejemplos
-
-El propio CSV ya trae **2 filas de ejemplo** (una flor y un aceite) para que veas el
-formato. **Bórralas** y escribe las tuyas, o escribe debajo y luego me dices que ignore
-las de ejemplo.
-
-## Cuando lo tengas listo
-
-Envíame el CSV (adjunto o pegando su contenido). Yo:
-1. Convierto cada fila en un producto del catálogo (`lib/commerce/mock-data.ts`).
-2. Aplico categorías, variantes, precios, etiquetas y disclaimers.
-3. Lo publico en el repo → Vercel despliega la tienda con tus productos reales.
+> El Excel se genera con `docs/_build_xlsx.py` (sin dependencias externas).
+> Para regenerarlo: `python3 docs/_build_xlsx.py`.
