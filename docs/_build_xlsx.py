@@ -207,16 +207,34 @@ CONTENT_TYPES = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Override PartName="/xl/worksheets/sheet2.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/>
 <Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/>
 <Override PartName="/xl/sharedStrings.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sharedStrings+xml"/>
+<Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>
+<Override PartName="/docProps/app.xml" ContentType="application/vnd.openxmlformats-officedocument.extended-properties+xml"/>
 </Types>'''
 
 ROOT_RELS = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
 <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/>
+<Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>
+<Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/extended-properties" Target="docProps/app.xml"/>
 </Relationships>'''
+
+DOCPROPS_CORE = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<dc:title>Plantilla de productos - The Best Dreams</dc:title>
+<dc:creator>The Best Dreams</dc:creator>
+<cp:lastModifiedBy>The Best Dreams</cp:lastModifiedBy>
+</cp:coreProperties>'''
+
+DOCPROPS_APP = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties" xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes">
+<Application>The Best Dreams Template</Application>
+</Properties>'''
 
 WORKBOOK = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">
+<bookViews><workbookView activeTab="1"/></bookViews>
 <sheets><sheet name="Instrucciones" sheetId="1" r:id="rId1"/><sheet name="Productos" sheetId="2" r:id="rId2"/></sheets>
+<calcPr calcId="0"/>
 </workbook>'''
 
 WORKBOOK_RELS = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -341,6 +359,8 @@ def main():
     with zipfile.ZipFile(OUT, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("[Content_Types].xml", CONTENT_TYPES)
         z.writestr("_rels/.rels", ROOT_RELS)
+        z.writestr("docProps/core.xml", DOCPROPS_CORE)
+        z.writestr("docProps/app.xml", DOCPROPS_APP)
         z.writestr("xl/workbook.xml", WORKBOOK)
         z.writestr("xl/_rels/workbook.xml.rels", WORKBOOK_RELS)
         z.writestr("xl/styles.xml", styles)
